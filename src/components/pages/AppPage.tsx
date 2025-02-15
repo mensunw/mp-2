@@ -2,6 +2,8 @@ import { Joke } from "./../../interfaces/Joke.ts";
 import JokeCards from "./../ui/JokeCards.tsx";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Headline from "./../universal/Headline.tsx";
+import Footer from "./../universal/Footer.tsx";
 
 function AppPage() {
   /* css */
@@ -14,7 +16,7 @@ function AppPage() {
 
   const StyledButton = styled.button`
     padding: 5px;
-    margin-top: 30px;
+    margin-bottom: 30px;
   `
 
   /* state for storing the jokes in a list */
@@ -37,12 +39,16 @@ function AppPage() {
   }, [refresh])
 
   return (
-    <StyledDiv>
-      {/* button for refreshing jokes */}
-      <StyledButton onClick={() => setRefresh(!refresh)}>↻</StyledButton>
-      {/* display each joke card with JokeCards component */}
-      <JokeCards jokes={jokes} />
-    </StyledDiv>
+    <>
+      <Headline />
+      <StyledDiv>
+        {/* display each joke card with JokeCards component */}
+        <JokeCards jokes={jokes} />
+        {/* button for refreshing jokes */}
+        <StyledButton onClick={() => setRefresh(!refresh)}>↻</StyledButton>
+      </StyledDiv>
+      <Footer />
+    </>
   )
 }
 
