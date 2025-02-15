@@ -1,10 +1,26 @@
 import { Joke } from "./../../interfaces/Joke.ts";
 import JokeCards from "./../ui/JokeCards.tsx";
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
 function AppPage() {
+  /* css */
+  const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+  `
+
+  const StyledButton = styled.button`
+    padding: 5px;
+    margin-top: 30px;
+  `
+
   /* state for storing the jokes in a list */
   const [jokes, setJokes] = useState<Joke[]>([]);
+  /* state for deciding when to refresh */
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   /* update jokes upon initial render */
   useEffect(() => {
@@ -18,13 +34,15 @@ function AppPage() {
     }
     getJokes()
       .catch((e: Error) => console.log("Error fetching api:", e))
-  }, [])
+  }, [refresh])
 
   return (
-    <>
+    <StyledDiv>
+      {/* button for refreshing jokes */}
+      <StyledButton onClick={() => setRefresh(!refresh)}>↻</StyledButton>
       {/* display each joke card with JokeCards component */}
       <JokeCards jokes={jokes} />
-    </>
+    </StyledDiv>
   )
 }
 

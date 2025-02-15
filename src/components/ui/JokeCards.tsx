@@ -3,11 +3,6 @@ import styled from "styled-components";
 
 function JokeCards(props: { jokes: Joke[] }) {
   /* css */
-  const StyledDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    background-color: lightblue;
-  `
   const StyledJokeUl = styled.ul`
     display: flex;
     flex-direction: column;
@@ -27,18 +22,16 @@ function JokeCards(props: { jokes: Joke[] }) {
     text-transform: uppercase;
   `
   return (
-    <StyledDiv>
-      <StyledJokeUl>
-        {/* map each joke to a container */}
-        {props.jokes.map((joke: Joke) => (
-          <StyledJokeLi key={joke.id}>
-            <StyledSpan><h3>{joke.type} (#{joke.id})</h3></StyledSpan>
-            <h4>Q: {joke.setup}</h4>
-            <p>A: {joke.punchline}</p>
-          </StyledJokeLi>
-        ))}
-      </StyledJokeUl>
-    </StyledDiv>
+    <StyledJokeUl>
+      {/* map each joke to a container */}
+      {props.jokes.map((joke: Joke) => (
+        <StyledJokeLi key={joke.id}>
+          <StyledSpan><h3>{joke.type} (#{joke.id})</h3></StyledSpan>
+          <h4>Q: {joke.setup}</h4>
+          <p>A: {joke.punchline}</p>
+        </StyledJokeLi>
+      ))}
+    </StyledJokeUl>
   )
 }
 
