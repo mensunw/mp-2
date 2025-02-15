@@ -1,10 +1,11 @@
-
+import AppPage from "./components/pages/AppPage.tsx";
 
 function App() {
 
   return (
     <>
-      hello
+      {/* calling components here to keep more organized  */}
+      <AppPage />
     </>
   )
 }
